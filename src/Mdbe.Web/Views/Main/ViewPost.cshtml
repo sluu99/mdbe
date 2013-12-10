@@ -1,0 +1,12 @@
+﻿@model Mdbe.Web.Models.ViewPostModel
+
+@{
+    ViewBag.Title = "ViewPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Post.MetaData.Title</h1>
+<small>@Model.Post.MetaData.Date.ToLongDateString()</small>
+<p>
+    @Html.Raw(@Model.Post.Html)
+</p>

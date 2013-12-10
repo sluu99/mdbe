@@ -1,0 +1,26 @@
+﻿@model Mdbe.Web.Models.AbstractModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Configuration.BlogTitle</title>
+    <style>
+        #container {
+            width: 100%;
+            max-width: 700px;
+            margin: 10px auto 10px auto;
+        }
+
+        h1 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2><a href="@Url.Content("~/")">@Model.Configuration.BlogTitle</a></h2>
+        @RenderBody()
+    </div>
+</body>
+</html>

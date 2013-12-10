@@ -1,0 +1,19 @@
+﻿@model Mdbe.Web.Models.IndexModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.MetaData != null && Model.MetaData.Count() > 0)
+{
+    <ul>
+    @foreach (var md in Model.MetaData)
+    {
+        var url = Url.Content(string.Format("~/{0}", md.Slug));
+        <li><a href="@url">@md.Title</a></li>
+    }
+    </ul>
+}
+else
+{
+    <text>There doesn't seem to be anything here.</text>
+}
