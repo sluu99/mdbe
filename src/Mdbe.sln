@@ -5,19 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdbe.Web", "Mdbe.Web\Mdbe.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdbe.Core", "Mdbe.Core\Mdbe.Core.csproj", "{6D6DF327-5270-4422-84D5-E4CBE274A2A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdbe.Core.Tests", "Mdbe.Core.Tests\Mdbe.Core.Tests.csproj", "{B4F7171B-9893-4426-9C36-13E1E81E871B}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://sluu99.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Mdbe.Core\\Mdbe.Core.csproj
-		SccProjectName1 = Mdbe.Core
-		SccLocalPath1 = Mdbe.Core
-		SccProjectUniqueName2 = Mdbe.Web\\Mdbe.Web.csproj
-		SccProjectName2 = Mdbe.Web
-		SccLocalPath2 = Mdbe.Web
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -31,6 +21,10 @@ Global
 		{6D6DF327-5270-4422-84D5-E4CBE274A2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D6DF327-5270-4422-84D5-E4CBE274A2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D6DF327-5270-4422-84D5-E4CBE274A2A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4F7171B-9893-4426-9C36-13E1E81E871B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F7171B-9893-4426-9C36-13E1E81E871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F7171B-9893-4426-9C36-13E1E81E871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F7171B-9893-4426-9C36-13E1E81E871B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
