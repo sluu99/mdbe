@@ -55,8 +55,7 @@
     <Compile Include="TestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Test_Data\Empty\Posts\" />
-    <Folder Include="Test_Data\Posts_Folder_Missing\" />
+    <Folder Include="Test_Data\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mdbe.Core\Mdbe.Core.csproj">
@@ -86,8 +85,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist $(TargetDir)Test_Data md $(TargetDir)Test_Data
+if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Posts
+if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Posts
+if not exist $(TargetDir)Test_Data\Posts_Folder_Missing md $(TargetDir)Test_Data\Posts_Folder_Missing
 
-xcopy /E $(ProjectDir)Test_Data $(TargetDir)Test_Data</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
