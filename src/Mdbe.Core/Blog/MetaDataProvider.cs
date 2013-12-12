@@ -12,6 +12,7 @@ namespace Mdbe.Core.Blog
     public class MetaDataProvider
     {
         private string _directory = null;
+        private string _postsDir = null;
         private DateTime _metaDataTime; // the last time meta data was fetched (UTC)
         private Dictionary<string, MetaData> _metaData = null;
         private Mutex _mutex = new Mutex();
@@ -28,6 +29,10 @@ namespace Mdbe.Core.Blog
             Contract.DirectoryExists(directory, string.Format("{0} does not exist", directory));
 
             _directory = directory;
+            _postsDir = Path.Combine(directory, "Posts");
+
+            Contract.DirectoryExists(_postsDir, string.Format("Cannot find 'Posts' directory in {0}", _directory));
+
             _cacheMins = cacheMins;
         }
 

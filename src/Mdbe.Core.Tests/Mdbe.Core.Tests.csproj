@@ -85,8 +85,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist $(TargetDir)Test_Data md $(TargetDir)Test_Data
-if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Posts
-if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Posts
+if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Empty\Posts
 if not exist $(TargetDir)Test_Data\Posts_Folder_Missing md $(TargetDir)Test_Data\Posts_Folder_Missing
 
 </PostBuildEvent>
