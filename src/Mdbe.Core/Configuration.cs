@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,6 +42,10 @@ namespace Mdbe.Core
         /// </summary>
         public int PostCache { get; private set; }
 
+        public string Version
+        {
+            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
 
         private static Mutex s_mutex = new Mutex();
         private static Configuration s_configuration = null;

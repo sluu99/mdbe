@@ -9,9 +9,14 @@
         #container {
             width: 100%;
             max-width: 700px;
+            min-height: 400px;
             margin: 10px auto 10px auto;
         }
-
+        #poweredby {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: small;
+        }
         h1 {
             margin: 0;
         }
@@ -21,6 +26,9 @@
     <div id="container">
         <h2><a href="@Url.Content("~/")">@Model.Configuration.BlogTitle</a></h2>
         @RenderBody()
+    </div>
+    <div id="poweredby">
+        Powered by Markdown Blog Engine @Model.Configuration.Version
     </div>
 </body>
 </html>
