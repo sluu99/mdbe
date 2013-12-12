@@ -20,6 +20,8 @@ namespace Mdbe.Core.Blog
 
         private string _slug;
         private string _title;
+        private bool _hasDate = false;
+        private DateTime _date;
 
         /// <summary>
         /// Path to the file
@@ -71,7 +73,15 @@ namespace Mdbe.Core.Blog
             }
         }
 
-        public DateTime Date { get; private set; }
+        public DateTime Date
+        {
+            get
+            {
+                if (!_hasDate) return new FileInfo(FilePath).CreationTime;
+                return _date;
+            }
+            set { _date = value; _hasDate = true; }
+        }
 
         public MetaData()
         {
