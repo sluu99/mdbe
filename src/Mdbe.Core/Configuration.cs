@@ -42,10 +42,18 @@ namespace Mdbe.Core
         /// </summary>
         public int PostCache { get; private set; }
 
+
         public string Version
         {
             get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
         }
+
+        /// <summary>
+        /// The disqus name
+        /// </summary>
+        public string DisqusName { get; private set; }
+
+
 
         private static Mutex s_mutex = new Mutex();
         private static Configuration s_configuration = null;
@@ -135,6 +143,12 @@ namespace Mdbe.Core
             if (s_configuration.PostCache < 0)
             {
                 s_configuration.PostCache = 0;
+            }
+
+            s_configuration.DisqusName = ConfigurationManager.AppSettings["Mdbe.Core.Configuration.DisqusName"];
+            if (!string.IsNullOrEmpty(s_configuration.DisqusName))
+            {
+                s_configuration.DisqusName = s_configuration.DisqusName.Trim();
             }
 
             s_configuration.ConfigurationTime = DateTime.UtcNow;
