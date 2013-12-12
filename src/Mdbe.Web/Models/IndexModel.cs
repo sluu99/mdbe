@@ -10,13 +10,13 @@ namespace Mdbe.Web.Models
     public class IndexModel : AbstractModel
     {
         public IEnumerable<MetaData> MetaData { get; set; }
-
+        
         /// <summary>
         /// 
         /// </summary>
         public IndexModel() : base()
         {
-            this.MetaData = Mdbe.Core.Blog.MetaData.GetAll().OrderByDescending(x => x.Date);
+            this.MetaData = Dependencies.MetaDataProvider.GetAll().OrderByDescending(x => x.Date);
         }
     }
 }

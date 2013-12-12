@@ -14,10 +14,6 @@ namespace Mdbe.Core.Blog
     /// </summary>
     public class MetaData
     {
-        private static DateTime s_metaDataTime; // the last time meta data was fetched (UTC)
-        private static Dictionary<string, MetaData> s_metaData = null;
-        private static Mutex s_mutex = new Mutex();
-
         private string _slug;
         private string _title;
         private bool _hasDate = false;
@@ -150,95 +146,6 @@ namespace Mdbe.Core.Blog
                     this.Date = DateTime.Parse(value.Trim());
                 }
             }
-        }
-
-        /// <summary>
-        /// Get all the meta data for the posts that are directly inside the specified folder
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<MetaData> GetAll()
-        {
-            var config = Configuration.GetConfiguration();
-            var folder = Path.Combine(config.DataDirectory, "Posts");
-
-            Contract.DirectoryExists(folder, "Data directory does not contain a \"Posts\" folder");
-
-            if (s_metaData == null)
-            {
-                s_mutex.WaitOne();
-
-                if (s_metaData == null || // someone else could have fetched the meta data while we're waiting 
-                    (DateTime.UtcNow - s_metaDataTime).TotalMinutes > config.MetaDataCache)
-                {
-                    DoGetAllMetaData(folder);
-                }
-
-                s_mutex.ReleaseMutex();
-            }
-            else if ((DateTime.UtcNow - s_metaDataTime).TotalMinutes > config.MetaDataCache)
-            {
-                s_mutex.WaitOne();
-
-                if ((DateTime.UtcNow - s_metaDataTime).TotalMinutes > config.MetaDataCache)
-                {
-                    DoGetAllMetaData(folder);
-                }
-
-                s_mutex.ReleaseMutex();
-            }
-
-            return s_metaData.Values.ToArray();
-        }
-
-        /// <summary>
-        /// Get a post meta data by the slug
-        /// </summary>
-        /// <param name="slug">The slug string</param>
-        /// <returns>The meta data if found; null otherwise</returns>
-        public static MetaData Get(string slug)
-        {
-            Contract.NotNullOrWhiteSpace(slug, "Slug must be specified");
-            slug = slug.Trim().ToLower();
-
-            MetaData.GetAll();
-
-            MetaData md = null;
-
-            s_mutex.WaitOne();
-
-            if (s_metaData.ContainsKey(slug))
-            {
-                md = s_metaData[slug];
-            }
-
-            s_mutex.ReleaseMutex();
-
-            return md;
-        }
-
-        /// <summary>
-        /// Fetch the meta data from files in the specified folder
-        /// </summary>
-        /// <param name="folder"></param>
-        private static void DoGetAllMetaData(string folder)
-        {
-            if (s_metaData == null)
-            {
-                s_metaData = new Dictionary<string, MetaData>();
-            }
-            else
-            {
-                s_metaData.Clear();
-            }
-
-            foreach (var fileName in Directory.GetFiles(folder, "*.md"))
-            {
-                var metaData = new MetaData(fileName);
-                var key = metaData.Slug.Trim().ToLower();
-                s_metaData.Add(key, metaData);
-            }
-
-            s_metaDataTime = DateTime.UtcNow;
         }
     }
 }

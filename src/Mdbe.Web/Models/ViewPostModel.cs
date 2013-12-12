@@ -16,7 +16,7 @@ namespace Mdbe.Web.Models
         {
             Contract.NotNullOrWhiteSpace(slug, "Must specify slug");
 
-            this.Post = Mdbe.Core.Blog.Post.Get(slug);
+            this.Post = Dependencies.PostProvider.Get(slug);
         }
 
     }

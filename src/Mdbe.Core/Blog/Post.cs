@@ -18,7 +18,7 @@ namespace Mdbe.Core.Blog
         /// <summary>
         /// When the post was fetched (UTC)
         /// </summary>
-        public DateTime FetchedOn { get; private set; }
+        public DateTime FetchedOn { get; internal set; }
 
         /// <summary>
         /// The markdown content
@@ -42,39 +42,11 @@ namespace Mdbe.Core.Blog
         public string Html { get; private set; }
 
         /// <summary>
-        /// Get a post by slug
-        /// </summary>
-        /// <param name="slug">The slug</param>
-        /// <returns>The post if found, or null otherwise</returns>
-        public static Post Get(string slug)
-        {
-            Contract.NotNullOrWhiteSpace(slug, "Slug must be specified");
-
-            slug = slug.Trim().ToLower();
-            var metaData = MetaData.Get(slug);
-                       
-
-            if (metaData != null)
-            {
-                var post = Post.FromFile(metaData.FilePath);
-                if (post != null)
-                {
-                    post.FetchedOn = DateTime.UtcNow;
-                }
-
-                return post;
-            }
-
-            return null;
-        }
-
-
-        /// <summary>
         /// Create a new Post instance from a file
         /// </summary>
         /// <param name="file">The file path</param>
         /// <returns></returns>
-        private static Post FromFile(string file)
+        public static Post FromFile(string file)
         {
             Contract.NotNullOrWhiteSpace(file, "File name must be specified");
             Contract.FileExists(file, string.Format("{0} does not exist", file));
@@ -96,6 +68,8 @@ namespace Mdbe.Core.Blog
                 }
                 post.Markdown = sb.ToString();
             }
+
+            post.FetchedOn = DateTime.UtcNow;
 
             return post;
         }
