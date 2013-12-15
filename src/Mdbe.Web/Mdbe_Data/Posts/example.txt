@@ -5,7 +5,7 @@ slug: hello-world
 Anything after the blank line above is considered post content.
 To start a new post:
 
-* Create new .md file in App_Data/Posts/
+* Create new .md file in Mdbe_Data/Posts/
 * Give it a title
 * Date is optional (many date time formats are supported); if not specified then the file creation date will be used
 * Slug: what would appear on the url; if not specified then the file name will be used
