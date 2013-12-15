@@ -53,15 +53,33 @@
     <Compile Include="TestMetaDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtils.cs" />
+    <Compile Include="Test_Data\Mixed_Files\Posts\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Mdbe.Core\Mdbe.Core.csproj">
       <Project>{6d6df327-5270-4422-84d5-e4cbe274a2a1}</Project>
       <Name>Mdbe.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Test_Data\Add_New_Posts_Here\Posts\has-all-the-meta-data.md" />
+    <None Include="Test_Data\Add_New_Posts_Here\Posts\no-meta-data.md" />
+    <None Include="Test_Data\Mixed_Files\Posts\post.md" />
+    <None Include="Test_Data\Mixed_Files\Posts\Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Test_Data\Multiple_Posts\Posts\post-one.md" />
+    <None Include="Test_Data\Multiple_Posts\Posts\post-two.md" />
+    <None Include="Test_Data\One_Post\Posts\the-one.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Test_Data\Mixed_Files\Posts\TextFile1.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -84,11 +102,11 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist $(TargetDir)Test_Data md $(TargetDir)Test_Data
-if not exist $(TargetDir)Test_Data\Empty\Posts md $(TargetDir)Test_Data\Empty\Posts
-if not exist $(TargetDir)Test_Data\Posts_Folder_Missing md $(TargetDir)Test_Data\Posts_Folder_Missing
-
-</PostBuildEvent>
+    <PostBuildEvent>if exist "$(TargetDir)Test_Data" rd /q /s "$(TargetDir)Test_Data"
+md "$(TargetDir)Test_Data"
+xcopy "$(ProjectDir)Test_Data" "$(TargetDir)Test_Data" /e /y
+if not exist "$(TargetDir)Test_Data\Empty\Posts" md "$(TargetDir)Test_Data\Empty\Posts"
+if not exist "$(TargetDir)Test_Data\Posts_Folder_Missing" md "$(TargetDir)Test_Data\Posts_Folder_Missing"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

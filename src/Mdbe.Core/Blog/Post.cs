@@ -48,7 +48,7 @@ namespace Mdbe.Core.Blog
         /// <returns></returns>
         public static Post FromFile(string file)
         {
-            Contract.NotNullOrWhiteSpace(file, "File name must be specified");
+            /*Contract.NotNullOrWhiteSpace(file, "File name must be specified");
             Contract.FileExists(file, string.Format("{0} does not exist", file));
 
             var post = new Post();
@@ -71,7 +71,8 @@ namespace Mdbe.Core.Blog
 
             post.FetchedOn = DateTime.UtcNow;
 
-            return post;
+            return post;*/
+            return null;
         }
     }
 }
