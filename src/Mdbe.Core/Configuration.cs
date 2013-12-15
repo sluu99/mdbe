@@ -108,7 +108,7 @@ namespace Mdbe.Core
             s_configuration.DataDirectory = ConfigurationManager.AppSettings["Mdbe.Core.Configuration.DataDirectory"];
             if (string.IsNullOrWhiteSpace(s_configuration.DataDirectory))
             {
-                s_configuration.DataDirectory = "~/App_Data";
+                s_configuration.DataDirectory = "~/Mdbe_Data";
             }
             if (s_configuration.DataDirectory[0] == '~' && HttpContext.Current != null)
             {
