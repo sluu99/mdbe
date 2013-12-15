@@ -58,6 +58,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings1.settings</DependentUpon>
     </Compile>
+    <Compile Include="TestPostProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
